@@ -5,7 +5,7 @@ import com.mamedov.creditprogram.repository.ClientRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
-
+@Service
 public class ClientServiceImpl implements ClientServiceInter{
     @Autowired
     private ClientRepo clientRepo;
