@@ -15,20 +15,29 @@ public class Client {
     @Column(nullable = false)
     private String fin,vesiqeSeria;
     @NotNull
-    private String ad,soyad,vesiqeVerilmeYeri,
+    private String ad,soyad,ataAdi,vesiqeVerilmeYeri,
             qeydiyyatUnvan,faktikiUnvan,dogumYeri,telefon,isYeri,vezife;
     @NotNull
     private Date dogumTarixi,vesiqeVerilTarixi,vesiqeBitmeTarixi;
     @OneToMany(cascade = CascadeType.ALL,mappedBy = "client")
     private List<Credit> credits;
 
+    public String getAtaAdi() {
+        return ataAdi;
+    }
+
+    public void setAtaAdi(String ataAdi) {
+        this.ataAdi = ataAdi;
+    }
+
     public Client() {
     }
 
-    public Client(String fin, String vesiqeSeria, String ad, String soyad, String vesiqeVerilmeYeri, String qeydiyyatUnvan,
+    public Client(String fin,String ataAdi, String vesiqeSeria, String ad, String soyad, String vesiqeVerilmeYeri, String qeydiyyatUnvan,
                   String faktikiUnvan, String dogumYeri, String telefon, String isYeri, String vezife, Date dogumTarixi,
                   Date vesiqeVerilTarixi, Date vesiqeBitmeTarixi) {
         this.fin = fin;
+        this.ataAdi=ataAdi;
         this.vesiqeSeria = vesiqeSeria;
         this.ad = ad;
         this.soyad = soyad;

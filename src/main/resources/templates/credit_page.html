@@ -1,10 +1,38 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" >
 <head>
     <meta charset="UTF-8">
     <title>CreditPage</title>
+
 </head>
 <body>
+<div>
+    <a href="new_credit">Yeni muqavile</a>
+    <a href="new_client">Yeni mushteri</a>
+</div>
+<br>
+    <table border="1" width="1200">
+    <tr>
+        <th>Kredit Id</th>
+        <th width="170">Ad</th>
+        <th width="220">Soyad</th>
+        <th>Kredit Meblegi</th>
+        <th>Esas mebleg</th>
+        <th>Faiz Meblegi</th>
+        <th>Cerime</th>
+        <th>Ayliq Odenish</th>
+    </tr>
+    <tr th:each="credit:${credits}">
+        <td th:text="${credit.id}">
+        <td th:text="${credit.client.ad}">
+        <td th:text="${credit.client.soyad}">
+        <td th:text="${credit.kreditMeblegi}">
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    </table>
 
 </body>
 </html>
