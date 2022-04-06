@@ -7,8 +7,8 @@
 </head>
 <body>
 <div>
-    <a href="new_credit">Yeni muqavile</a>
-    <a href="new_client">Yeni mushteri</a>
+    <a href="newcredit" method="get">Yeni muqavile</a>
+    <a href="newclient" >Yeni mushteri</a>
 </div>
 <br>
     <table border="1" width="1200">
@@ -16,6 +16,7 @@
         <th>Kredit Id</th>
         <th width="170">Ad</th>
         <th width="220">Soyad</th>
+        <th width="170">Ata adi:</th>
         <th>Kredit Meblegi</th>
         <th>Esas mebleg</th>
         <th>Faiz Meblegi</th>
@@ -26,11 +27,11 @@
         <td th:text="${credit.id}">
         <td th:text="${credit.client.ad}">
         <td th:text="${credit.client.soyad}">
-        <td th:text="${credit.kreditMeblegi}">
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
+        <td th:text="${credit.client.ataAdi}">
+        <td th:text="${credit.anaMebleg}">
+        <td th:text="${credit.faizMeblegi}">
+
+
     </tr>
     </table>
 

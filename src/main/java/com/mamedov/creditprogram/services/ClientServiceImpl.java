@@ -3,6 +3,7 @@ package com.mamedov.creditprogram.services;
 import com.mamedov.creditprogram.entities.Client;
 import com.mamedov.creditprogram.repository.ClientRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 @Service

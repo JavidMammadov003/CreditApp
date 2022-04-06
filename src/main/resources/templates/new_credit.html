@@ -5,6 +5,18 @@
     <title>Yeni Muqavile</title>
 </head>
 <body>
-<form th:action="@{/credit}" th:method="post" th:object="${credit}"></form>
+
+
+
+<form th:action="@{/credit/newcredit}" th:method="post" th:object="${credit}">
+
+    <label th:for="musteri">Musteri:</label><input  type="text" id="musteri_id" name="musteri_id" ><br><br>
+    <label th:for="mebleg">Kredit Meblegi:</label><input th:field="*{kreditMeblegi}" type="text" id="mebleg"><br><br>
+    <label th:for="faiz">Illik Faiz:</label><input th:field="*{illikFaiz}" type="text" id="faiz"><br><br>
+    <label th:for="ay">Muddet:</label><input th:field="*{kreditinMuddeti}" type="text" id="ay"><br><br>
+    <label th:for="elaqe">Elaqe nomreleri:</label><input th:field="*{musteriElaqeNomlar}" type="text" id="elaqe"><br><br>
+    <input th:type="submit" value="Qebul et">
+
+</form>
 </body>
 </html>

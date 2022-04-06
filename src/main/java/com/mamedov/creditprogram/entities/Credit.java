@@ -11,14 +11,43 @@ public class Credit {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @NotNull
-    private int kreditMeblegi,illikFaiz,cerimeFaizi,kreditinMuddeti;
+    private int kreditMeblegi,illikFaiz,cerimeFaizi,kreditinMuddeti,anaMebleg;
     @NotNull
     private Date kreditinBaslamaTarixi,kreditinBitmeTarixi;
-    private String musteriElaqeNomlar;
+    private String musteriElaqeNomlar,sonOdenisTarixi;
     @ManyToOne
     @JoinColumn(name = "client_id")
     private Client client;
     public Credit() {
+    }
+
+    public Credit(int kreditMeblegi,int anaMebleg, int illikFaiz, int cerimeFaizi, int kreditinMuddeti,
+                  Date kreditinBaslamaTarixi, Date kreditinBitmeTarixi, String musteriElaqeNomlar, Client client) {
+        this.kreditMeblegi = kreditMeblegi;
+        this.illikFaiz = illikFaiz;
+        this.anaMebleg=anaMebleg;
+        this.cerimeFaizi = cerimeFaizi;
+        this.kreditinMuddeti = kreditinMuddeti;
+        this.kreditinBaslamaTarixi = kreditinBaslamaTarixi;
+        this.kreditinBitmeTarixi = kreditinBitmeTarixi;
+        this.musteriElaqeNomlar = musteriElaqeNomlar;
+        this.client = client;
+    }
+
+    public String getSonOdenisTarixi() {
+        return sonOdenisTarixi;
+    }
+
+    public void setSonOdenisTarixi(String sonOdenisTarixi) {
+        this.sonOdenisTarixi = sonOdenisTarixi;
+    }
+
+    public int getAnaMebleg() {
+        return anaMebleg;
+    }
+
+    public void setAnaMebleg(int anaMebleg) {
+        this.anaMebleg = anaMebleg;
     }
 
     public Client getClient() {
@@ -29,16 +58,7 @@ public class Credit {
         this.client = client;
     }
 
-    public Credit(int kreditMeblegi, int illikFaiz, int cerimeFaizi, int kreditinMuddeti, Date kreditinBaslamaTarixi,
-                  Date kreditinBitmeTarixi, String musteriElaqeNomlar) {
-        this.kreditMeblegi = kreditMeblegi;
-        this.illikFaiz = illikFaiz;
-        this.cerimeFaizi = cerimeFaizi;
-        this.kreditinMuddeti = kreditinMuddeti;
-        this.kreditinBaslamaTarixi = kreditinBaslamaTarixi;
-        this.kreditinBitmeTarixi = kreditinBitmeTarixi;
-        this.musteriElaqeNomlar = musteriElaqeNomlar;
-    }
+
 
     public int getId() {
         return id;

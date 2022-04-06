@@ -21,7 +21,9 @@ public class Client {
     private Date dogumTarixi,vesiqeVerilTarixi,vesiqeBitmeTarixi;
     @OneToMany(cascade = CascadeType.ALL,mappedBy = "client")
     private List<Credit> credits;
-
+    public void addCredit(Credit credit){
+        credits.add(credit);
+    }
     public String getAtaAdi() {
         return ataAdi;
     }

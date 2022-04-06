@@ -5,23 +5,23 @@
     <title>Yeni Musteri</title>
 </head>
 <body>
-<form th:action="@{/credit}" th:method="post" th:object="${client}">
-    <label for="ad">Ad:</label><input th:field="*{ad}" type="text" id="ad"><br><br>
-    <label for="soyad">Soyad:</label><input th:field="*{soyad}" type="text" id="soyad"><br><br>
-    <label for="ata">Ata adi:</label><input th:field="*{ataAdi}" type="text" id="ata"><br><br>
-    <label for="fin">Fin:</label><input th:field="*{fin} type="text" id="fin"><br><br>
-    <label for="seriya">Vesiqenin Seriyasi:</label><input th:field="*{vesiqeSeria} type="text" id="seriya"><br><br>
-    <label for="verilyeri">Vesiqenin Verildiyi Yer:</label><input th:field="*{vesiqeVerilmeYeri} type="text" id="verilyeri"><br><br>
-    <label for="bitme">Vesiqenin Bitme Tarixi:</label><input th:field="*{vesiqeVerilTarixi} type="date" id="bitme"><br><br>
-    <label for="verilme">Vesiqenin Verilme Tarixi:</label><input th:field="*{vesiqeBitmeTarixi} type="date" id="verilme"><br><br>
-    <label for="dogumyeri">Doguldugu Yer:</label><input th:field="*{dogumYeri} type="text" id="dogumyeri"><br><br>
-    <label for="qeydiyyat">Qeydiyyat Unvani:</label><input th:field="*{qeydiyyatUnvan} type="text" id="qeydiyyat"><br><br>
-    <label for="faktiki">Faktiki Unvan:</label><input th:field="*{faktikiUnvan} type="text" id="faktiki"><br><br>
-    <label for="dogumtarixi">Dogum Tarixi:</label><input th:field="*{dogumTarixi} type="date" id="dogumtarixi"><br><br>
-    <label for="ish">Ishlediyi Yer:</label><input th:field="*{isYeri} type="text" id="ish"><br><br>
-    <label for="vezife">Vezife:</label><input th:field="*{vezife} type="text" id="vezife"><br><br>
-    <label for="tel">Telefon nomresi:</label><input th:field="*{telefon} type="text" id="tel">
-
+<form th:action="@{/credit/newclient}" th:method="post" th:object="${client}">
+    <label th:for="ad">Ad:</label><input th:field="*{ad}" type="text" id="ad"><br><br>
+    <label th:for="soyad">Soyad:</label><input th:field="*{soyad}" type="text" id="soyad"><br><br>
+    <label th:for="ata">Ata adi:</label><input th:field="*{ataAdi}" type="text" id="ata"><br><br>
+    <label th:for="fin">Fin:</label><input th:field="*{fin}" type="text" id="fin"><br><br>
+    <label th:for="seriya">Vesiqenin Seriyasi:</label><input th:field="*{vesiqeSeria}" type="text" id="seriya"><br><br>
+    <label th:for="verilyeri">Vesiqenin Verildiyi Yer:</label><input th:field="*{vesiqeVerilmeYeri}" type="text" id="verilyeri"><br><br>
+    <label th:for="bitme">Vesiqenin Bitme Tarixi:</label><input th:field="*{vesiqeVerilTarixi}" type="date" id="bitme"><br><br>
+    <label th:for="verilme">Vesiqenin Verilme Tarixi:</label><input th:field="*{vesiqeBitmeTarixi}" type="date" id="verilme"><br><br>
+    <label th:for="dogumyeri">Doguldugu Yer:</label><input th:field="*{dogumYeri}" type="text" id="dogumyeri"><br><br>
+    <label th:for="qeydiyyat">Qeydiyyat Unvani:</label><input th:field="*{qeydiyyatUnvan}" type="text" id="qeydiyyat"><br><br>
+    <label th:for="faktiki">Faktiki Unvan:</label><input th:field="*{faktikiUnvan}" type="text" id="faktiki"><br><br>
+    <label th:for="dogumtarixi">Dogum Tarixi:</label><input th:field="*{dogumTarixi}" type="date" id="dogumtarixi"><br><br>
+    <label th:for="ish">Ishlediyi Yer:</label><input th:field="*{isYeri}" type="text" id="ish"><br><br>
+    <label th:for="vezife">Vezife:</label><input th:field="*{vezife}" type="text" id="vezife"><br><br>
+    <label th:for="tel">Telefon nomresi:</label><input th:field="*{telefon}" type="text" id="tel"><br><br>
+    <input type="submit" value="Qebul et">
 
 </form>
 </body>
