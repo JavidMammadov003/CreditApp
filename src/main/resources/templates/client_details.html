@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Musteri Haqqinda Melumat</title>
+</head>
+<body>
+<a href="/credit/home">Ana Sehife</a>
+<a href="/credit/client">Musteriler</a>
+<table border="1">
+    <tr>
+        <th>Id</th>
+        <th>Ad</th>
+        <th>Soyad</th>
+        <th>Ata adi</th>
+        <th>Fin</th>
+        <th>Vesiqe</th>
+        <th>Vesiqe Verilme</th>
+        <th>Vesiqe Bitme</th>
+        <th>Ish</th>
+        <th>Vezife</th>
+        <th>Telefon</th>
+        <th>Qeydiyyat Unvani</th>
+        <th>Faktiki unvan</th>
+        <th>Dogum Tarixi</th>
+        <th>Doguldugu Yer</th>
+        <th>Process</th>
+    </tr>
+    <tr >
+        <td th:text="${client.id}"></td>
+        <td th:text="${client.ad}"></td>
+        <td th:text="${client.soyad}"></td>
+        <td th:text="${client.ataAdi}"></td>
+        <td th:text="${client.fin}"></td>
+        <td th:text="${client.vesiqeSeria}"></td>
+        <td th:text="${client.vesiqeVerilTarixi}"></td>
+        <td th:text="${client.vesiqeBitmeTarixi}"></td>
+        <td th:text="${client.isYeri}"></td>
+        <td th:text="${client.vezife}"></td>
+        <td th:text="${client.telefon}"></td>
+        <td th:text="${client.qeydiyyatUnvan}"></td>
+        <td th:text="${client.faktikiUnvan}"></td>
+        <td th:text="${client.dogumTarixi}"></td>
+        <td th:text="${client.dogumYeri}"></td>
+        <td>
+            <form th:action="@{client/{id}(clid=${client.id})}" method="put"><input value="Yenilə" type="button" ></form>
+        </td>
+    </tr>
+</table>
+</body>
+</html>

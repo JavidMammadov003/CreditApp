@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Musteriler</title>
+</head>
+<body>
+<a href="/credit/home">Ana Sehife</a>
+<a href="/credit/newclient">Yeni Musteri</a>
+<table border="1">
+    <tr>
+    <th>Id</th>
+    <th>Ad</th>
+    <th>Soyad</th>
+    <th>Ata adi</th>
+    <th>Fin</th>
+    <th>Elaqe</th>
+        <th>Process</th>
+    </tr>
+    <tr th:each="client:${clients}">
+        <td th:text="${client.id}"></td>
+        <td th:text="${client.ad}"></td>
+        <td th:text="${client.soyad}"></td>
+        <td th:text="${client.ataAdi}"></td>
+        <td th:text="${client.fin}"></td>
+        <td th:text="${client.telefon}"></td>
+        <td>
+            <form th:action="@{client/{clid}(clid=${client.id})}" method="get">
+            <input type="submit"  value="Etrafli">
+<!--            <input type="submit" th:action="@{client/${client.id}}" value="Sil" method="delete">-->
+            </form>
+        </td>
+    </tr>
+</table>
+</body>
+</html>

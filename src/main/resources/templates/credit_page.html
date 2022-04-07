@@ -9,6 +9,7 @@
 <div>
     <a href="newcredit" method="get">Yeni muqavile</a>
     <a href="newclient" >Yeni mushteri</a>
+    <a href="client">Musteriler</a>
 </div>
 <br>
     <table border="1" width="1200">
@@ -28,8 +29,11 @@
         <td th:text="${credit.client.ad}">
         <td th:text="${credit.client.soyad}">
         <td th:text="${credit.client.ataAdi}">
+        <td th:text="${credit.kreditMeblegi}">
         <td th:text="${credit.anaMebleg}">
         <td th:text="${credit.faizMeblegi}">
+        <td th:text="${credit.cerimeMeblegi}">
+        <td th:text="${credit.ayligOdenis}">
 
 
     </tr>

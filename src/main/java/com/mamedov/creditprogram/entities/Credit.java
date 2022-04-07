@@ -11,17 +11,18 @@ public class Credit {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @NotNull
-    private int kreditMeblegi,illikFaiz,cerimeFaizi,kreditinMuddeti,anaMebleg;
+    private int kreditMeblegi,illikFaiz,kreditinMuddeti;
     @NotNull
-    private Date kreditinBaslamaTarixi,kreditinBitmeTarixi;
-    private String musteriElaqeNomlar,sonOdenisTarixi;
+    private double cerimeFaizi,anaMebleg;
+    private Date kreditinBaslamaTarixi,kreditinBitmeTarixi,sonOdenisTarixi;
+    private String musteriElaqeNomlar;
     @ManyToOne
     @JoinColumn(name = "client_id")
     private Client client;
     public Credit() {
     }
 
-    public Credit(int kreditMeblegi,int anaMebleg, int illikFaiz, int cerimeFaizi, int kreditinMuddeti,
+    public Credit(int kreditMeblegi,double anaMebleg, int illikFaiz, double cerimeFaizi, int kreditinMuddeti,
                   Date kreditinBaslamaTarixi, Date kreditinBitmeTarixi, String musteriElaqeNomlar, Client client) {
         this.kreditMeblegi = kreditMeblegi;
         this.illikFaiz = illikFaiz;
@@ -34,19 +35,19 @@ public class Credit {
         this.client = client;
     }
 
-    public String getSonOdenisTarixi() {
+    public Date getSonOdenisTarixi() {
         return sonOdenisTarixi;
     }
 
-    public void setSonOdenisTarixi(String sonOdenisTarixi) {
+    public void setSonOdenisTarixi(Date sonOdenisTarixi) {
         this.sonOdenisTarixi = sonOdenisTarixi;
     }
 
-    public int getAnaMebleg() {
+    public double getAnaMebleg() {
         return anaMebleg;
     }
 
-    public void setAnaMebleg(int anaMebleg) {
+    public void setAnaMebleg(double anaMebleg) {
         this.anaMebleg = anaMebleg;
     }
 
@@ -84,11 +85,11 @@ public class Credit {
         this.illikFaiz = illikFaiz;
     }
 
-    public int getCerimeFaizi() {
+    public double getCerimeFaizi() {
         return cerimeFaizi;
     }
 
-    public void setCerimeFaizi(int cerimeFaizi) {
+    public void setCerimeFaizi(double cerimeFaizi) {
         this.cerimeFaizi = cerimeFaizi;
     }
 

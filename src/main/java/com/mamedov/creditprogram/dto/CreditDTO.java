@@ -2,20 +2,24 @@ package com.mamedov.creditprogram.dto;
 
 import com.mamedov.creditprogram.entities.Client;
 import com.mamedov.creditprogram.entities.Credit;
-import com.mamedov.creditprogram.services.CreditProcess;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+
+import org.apache.commons.math3.util.Precision;
+
 
 import java.sql.Date;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
+import java.util.Calendar;
 
 public class CreditDTO {
-    @Autowired
-    private CreditProcess process;
+    private final LocalDate bugunkiTarix=new java.sql.Date(Calendar.getInstance().getTime().getTime()).toLocalDate();
+    private LocalDate sonOdenis;
     private String musteriElaqeNomlar;
-    private int id,kreditMeblegi,illikFaiz,cerimeFaizi,kreditinMuddeti,anaMebleg,cerimeMeblegi,faizMeblegi;
+    private double ayligOdenis,cerimeMeblegi,faizMeblegi,cerimeFaizi,anaMebleg;
+    private int id,kreditMeblegi,illikFaiz,kreditinMuddeti;
     private Date kreditinBaslamaTarixi,kreditinBitmeTarixi;
     private Client client;
-    public CreditDTO(){}
+
     public CreditDTO(Credit credit){
         this.musteriElaqeNomlar=credit.getMusteriElaqeNomlar();
         this.id=credit.getId();
@@ -25,17 +29,60 @@ public class CreditDTO {
         this.kreditinMuddeti=credit.getKreditinMuddeti();
         this.kreditinBaslamaTarixi=credit.getKreditinBaslamaTarixi();
         this.kreditinBitmeTarixi=credit.getKreditinBitmeTarixi();
-//        this.faizMeblegi= process.faizMeblegi(credit);
         this.anaMebleg= credit.getAnaMebleg();
+        this.faizMeblegi= Precision.round(faizMeblegi(credit),2);
+        this.ayligOdenis= Precision.round(ayligOdenis(credit),2);
+        this.cerimeMeblegi=Precision.round(cerimeMeblegi(credit),2);
         this.client=credit.getClient();
     }
+    private double faizMeblegi(Credit credit) {
+        double gunFaizi=credit.getIllikFaiz()/12.0/30.0;
+        double anaMebleg=credit.getAnaMebleg();
+        try {
+            this.sonOdenis = credit.getSonOdenisTarixi().toLocalDate();
+        }catch(NullPointerException e){
+            int gunSayi= (int) ChronoUnit.DAYS.between(credit.getKreditinBaslamaTarixi().toLocalDate(),bugunkiTarix);
+            System.out.println(bugunkiTarix);
+            return (anaMebleg*gunSayi*gunFaizi)/100.0;
+        }
+        int gunSayi2=(int) ChronoUnit.DAYS.between(sonOdenis,bugunkiTarix);
 
-    public CreditProcess getProcess() {
-        return process;
+        return anaMebleg*(gunSayi2*gunFaizi)/100.0;
+
+    }
+    private double cerimeMeblegi(Credit credit) {
+        LocalDate baslamaTarixi = credit.getKreditinBaslamaTarixi().toLocalDate();
+        double anaMebleg = credit.getAnaMebleg();
+        double cerimeFaizi = credit.getCerimeFaizi();
+        try {
+            this.sonOdenis = credit.getSonOdenisTarixi().toLocalDate();
+
+        } catch (NullPointerException e) {
+            if (baslamaTarixi.plusDays(30).isAfter(bugunkiTarix)) {
+                return 0;
+            } else if (baslamaTarixi.plusDays(30).isBefore(bugunkiTarix)) {
+                int gecikmeGunleri = (int) ChronoUnit.DAYS.between(baslamaTarixi.plusDays(30), bugunkiTarix);
+                return anaMebleg * (gecikmeGunleri * cerimeFaizi)/100.0;
+            }
+        }
+        if (sonOdenis.plusDays(30).isAfter(bugunkiTarix))
+            return 0;
+        int gecikmeGunleri = (int) ChronoUnit.DAYS.between(sonOdenis.plusDays(30), bugunkiTarix);
+        return anaMebleg * (gecikmeGunleri * cerimeFaizi)/100.0;
     }
 
-    public void setProcess(CreditProcess process) {
-        this.process = process;
+    private  double ayligOdenis(Credit credit){
+        double anaMebleg=credit.getKreditMeblegi();
+        double faiz=credit.getIllikFaiz();
+        double aylar=credit.getKreditinMuddeti();
+        return (anaMebleg+(anaMebleg*(faiz/1.75/12*aylar)/100))/aylar;
+    }
+    public double getAyligOdenis() {
+        return ayligOdenis;
+    }
+
+    public void setAyligOdenis(double ayligOdenis) {
+        this.ayligOdenis = ayligOdenis;
     }
 
     public String getMusteriElaqeNomlar() {
@@ -70,11 +117,11 @@ public class CreditDTO {
         this.illikFaiz = illikFaiz;
     }
 
-    public int getCerimeFaizi() {
+    public double getCerimeFaizi() {
         return cerimeFaizi;
     }
 
-    public void setCerimeFaizi(int cerimeFaizi) {
+    public void setCerimeFaizi(double cerimeFaizi) {
         this.cerimeFaizi = cerimeFaizi;
     }
 
@@ -86,27 +133,27 @@ public class CreditDTO {
         this.kreditinMuddeti = kreditinMuddeti;
     }
 
-    public int getAnaMebleg() {
+    public double getAnaMebleg() {
         return anaMebleg;
     }
 
-    public void setAnaMebleg(int anaMebleg) {
+    public void setAnaMebleg(double anaMebleg) {
         this.anaMebleg = anaMebleg;
     }
 
-    public int getCerimeMeblegi() {
+    public double getCerimeMeblegi() {
         return cerimeMeblegi;
     }
 
-    public void setCerimeMeblegi(int cerimeMeblegi) {
+    public void setCerimeMeblegi(double cerimeMeblegi) {
         this.cerimeMeblegi = cerimeMeblegi;
     }
 
-    public int getFaizMeblegi() {
+    public double getFaizMeblegi() {
         return faizMeblegi;
     }
 
-    public void setFaizMeblegi(int faizMeblegi) {
+    public void setFaizMeblegi(double faizMeblegi) {
         this.faizMeblegi = faizMeblegi;
     }
 

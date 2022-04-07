@@ -5,7 +5,8 @@
     <title>Yeni Musteri</title>
 </head>
 <body>
-<form th:action="@{/credit/newclient}" th:method="post" th:object="${client}">
+<a href="home">Ana sehife</a><br><br>
+<form th:action="@{/credit/client}" th:method="post" th:object="${client}">
     <label th:for="ad">Ad:</label><input th:field="*{ad}" type="text" id="ad"><br><br>
     <label th:for="soyad">Soyad:</label><input th:field="*{soyad}" type="text" id="soyad"><br><br>
     <label th:for="ata">Ata adi:</label><input th:field="*{ataAdi}" type="text" id="ata"><br><br>

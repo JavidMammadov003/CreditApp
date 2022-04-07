@@ -39,24 +39,39 @@ public class KreditController {
         model.addAttribute("client",new Client());
         return "new_client";
     }
-    @PostMapping("/newclient")
-    public String addClientDB(@ModelAttribute("client") Client client){
+    @GetMapping("/client")
+    public String getClients(Model model){
+        model.addAttribute("clients",clientService.getAllClients());
+        return "clients";
+    }
+    @GetMapping("/client/{clid}")
+    public String clientDetails(@PathVariable("clid")int id,Model model){
+        Client client=clientService.getClientById(id);
+        model.addAttribute("client",client);
+        return "client_details";
+    }
+    @PostMapping("/client")
+    public String addClientDB(@ModelAttribute("client") Client client,Model model){
         clientService.saveClient(client);
-        return "redirect:home";
+        List<Client> clients=clientService.getAllClients();
+        model.addAttribute("clients",clients);
+        return "clients";
     }
     @GetMapping("/newcredit")
-    public String newCreditView(Model model){
-        model.addAttribute("credit",new Credit());
+    public String newCreditView(Model model) {
+        model.addAttribute("credit", new Credit());
         return "new_credit";
     }
     @PostMapping("/newcredit")
     public String addCreditDB(@ModelAttribute("credit") Credit credit, @RequestParam("musteri_id") int id){
         Client client=clientService.getClientById(id);
-        Date bitmeTarixi=new java.sql.Date(Calendar.getInstance().getTime().getTime());
-        LocalDate localDate=bitmeTarixi.toLocalDate().plusMonths(credit.getKreditinMuddeti());
-        bitmeTarixi=Date.valueOf(localDate);
+        Date baslamaTarixi=new java.sql.Date(Calendar.getInstance().getTime().getTime());
+        LocalDate localDate=baslamaTarixi.toLocalDate().plusMonths(credit.getKreditinMuddeti());
+        Date bitmeTarixi=Date.valueOf(localDate);
         credit.setKreditinBitmeTarixi(bitmeTarixi);
         credit.setClient(client);
+        credit.setKreditinBaslamaTarixi(baslamaTarixi);
+        credit.setAnaMebleg(credit.getKreditMeblegi());
         client.addCredit(credit);
         creditService.saveCredit(credit);
         return "redirect:home";
