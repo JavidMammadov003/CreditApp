@@ -16,6 +16,9 @@
     <label th:for="cerime">Cerime Faizi:</label><input th:field="*{cerimeFaizi}" type="text" id="cerime"><br><br>
     <label th:for="ay">Muddet:</label><input th:field="*{kreditinMuddeti}" type="text" id="ay"><br><br>
     <label th:for="elaqe">Elaqe nomreleri:</label><input th:field="*{musteriElaqeNomlar}" type="text" id="elaqe"><br><br>
+    <ul>
+        <li  th:if="${#fields.hasErrors('*')}"th:errors="*"></li>
+    </ul>
     <input th:type="submit" value="Qebul et">
 
 </form>

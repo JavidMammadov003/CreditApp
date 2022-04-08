@@ -8,13 +8,16 @@ import com.mamedov.creditprogram.services.CreditServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.function.BinaryOperator;
 
 @Controller
 @RequestMapping("/credit")
@@ -63,8 +66,10 @@ public class KreditController {
         return "new_credit";
     }
     @PostMapping("/new")
-    public String addCreditDB(@ModelAttribute("credit") Credit credit, @RequestParam("musteri_id") int id){
+    public String addCreditDB(@Valid @ModelAttribute("credit") Credit credit, BindingResult bindingResult,@RequestParam("musteri_id") int id){
+
         Client client=clientService.getClientById(id);
+        if (bindingResult.hasErrors()) return "new_credit";
         Date baslamaTarixi=new java.sql.Date(Calendar.getInstance().getTime().getTime());
         LocalDate localDate=baslamaTarixi.toLocalDate().plusMonths(credit.getKreditinMuddeti());
         Date bitmeTarixi=Date.valueOf(localDate);

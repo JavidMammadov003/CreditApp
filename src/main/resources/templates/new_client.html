@@ -23,7 +23,7 @@
     <label th:for="vezife">Vezife:</label><input th:field="*{vezife}" type="text" id="vezife"><br><br>
     <label th:for="tel">Telefon nomresi:</label><input th:field="*{telefon}" type="text" id="tel"><br><br>
     <ul>
-    <li th:for="ad" th:if="${#fields.hasErrors('*')}"th:errors="*"></li>
+    <li  th:if="${#fields.hasErrors('*')}"th:errors="*"></li>
     </ul>
     <input type="submit" value="Qebul et">
 

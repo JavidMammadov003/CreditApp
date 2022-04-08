@@ -1,8 +1,7 @@
 package com.mamedov.creditprogram.entities;
 
-import com.sun.istack.NotNull;
-
 import javax.persistence.*;
+import javax.validation.constraints.*;
 import java.sql.Date;
 
 @Entity
@@ -11,19 +10,21 @@ public class Credit {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @Digits(integer = 10,fraction = 0)
     private int kreditMeblegi;
-
+    @Digits(integer = 10,fraction = 0)
     private int illikFaiz;
-
+     @Digits(integer = 10,fraction = 0)
     private int kreditinMuddeti;
-
+     @Digits(integer = 10,fraction = 1)
     private double cerimeFaizi;
-
     private double anaMebleg;
     private Date kreditinBaslamaTarixi;
     private Date kreditinBitmeTarixi;
     private Date sonOdenisTarixi;
+    @NotBlank
     private String musteriElaqeNomlar;
+
     @ManyToOne
     @JoinColumn(name = "client_id")
     private Client client;
