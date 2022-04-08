@@ -6,7 +6,7 @@
 </head>
 <body>
 <a href="/credit/home">Ana Sehife</a>
-<a href="/credit/client">Musteriler</a>
+<a href="/client/">Musteriler</a>
 <table border="1">
     <tr>
         <th>Id</th>
@@ -26,7 +26,7 @@
         <th>Doguldugu Yer</th>
         <th>Process</th>
     </tr>
-    <tr >
+    <tr th:object="${client}">
         <td th:text="${client.id}"></td>
         <td th:text="${client.ad}"></td>
         <td th:text="${client.soyad}"></td>
@@ -43,7 +43,7 @@
         <td th:text="${client.dogumTarixi}"></td>
         <td th:text="${client.dogumYeri}"></td>
         <td>
-            <form th:action="@{client/{id}(clid=${client.id})}" method="put"><input value="Yenilə" type="button" ></form>
+            <form th:action="@{/client/{id}(clid=${client.id})}" method="put"><input value="Yenilə" type="button" ></form>
         </td>
     </tr>
 </table>

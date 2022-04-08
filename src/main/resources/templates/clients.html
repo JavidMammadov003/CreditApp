@@ -6,7 +6,7 @@
 </head>
 <body>
 <a href="/credit/home">Ana Sehife</a>
-<a href="/credit/newclient">Yeni Musteri</a>
+<a href="/client/new">Yeni Musteri</a>
 <table border="1">
     <tr>
     <th>Id</th>
@@ -25,9 +25,10 @@
         <td th:text="${client.fin}"></td>
         <td th:text="${client.telefon}"></td>
         <td>
-            <form th:action="@{client/{clid}(clid=${client.id})}" method="get">
-            <input type="submit"  value="Etrafli">
-<!--            <input type="submit" th:action="@{client/${client.id}}" value="Sil" method="delete">-->
+            <form th:action="@{/client/{clid}(clid=${client.id})}" th:method="get">
+            <input type="submit"  value="Etrafli"></form>
+            <form  th:action="@{/client/{clid}(clid=${client.id})}" th:method="delete">
+            <input type="submit"  value="Sil" >
             </form>
         </td>
     </tr>

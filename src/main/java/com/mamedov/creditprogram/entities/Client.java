@@ -1,8 +1,9 @@
 package com.mamedov.creditprogram.entities;
 
-import com.sun.istack.NotNull;
-
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.sql.Date;
 import java.util.List;
 
@@ -13,12 +14,36 @@ public class Client {
     private int id;
 
     @Column(nullable = false)
-    private String fin,vesiqeSeria;
-    @NotNull
-    private String ad,soyad,ataAdi,vesiqeVerilmeYeri,
-            qeydiyyatUnvan,faktikiUnvan,dogumYeri,telefon,isYeri,vezife;
-    @NotNull
-    private Date dogumTarixi,vesiqeVerilTarixi,vesiqeBitmeTarixi;
+    @Size(min = 7,max = 7 ,message = "Duzgun fin daxil edin")
+    private String fin;
+    @NotBlank
+    private String vesiqeSeria;
+    @NotBlank
+    private String ad;
+    @NotBlank
+    private String soyad;
+    @NotBlank
+    private String ataAdi;
+    @NotBlank
+    private String vesiqeVerilmeYeri;
+    @NotBlank
+    private String qeydiyyatUnvan;
+    @NotBlank
+    private String faktikiUnvan;
+    @NotBlank
+    private String dogumYeri;
+    @NotBlank
+    private String telefon;
+    @NotBlank
+    private String isYeri;
+    @NotBlank
+    private String vezife;
+    @NotNull(message = "Dogum tarixini qeyd edin")
+    private Date dogumTarixi;
+    @NotNull(message = "Vesiqenin verilme tarixini qeyd edin")
+    private Date vesiqeVerilTarixi;
+    @NotNull(message = "Vesiqenin bitme tarixini qeyd edin")
+    private Date vesiqeBitmeTarixi;
     @OneToMany(cascade = CascadeType.ALL,mappedBy = "client")
     private List<Credit> credits;
     public void addCredit(Credit credit){

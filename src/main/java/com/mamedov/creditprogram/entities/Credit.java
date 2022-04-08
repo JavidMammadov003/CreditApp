@@ -10,11 +10,19 @@ public class Credit {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @NotNull
-    private int kreditMeblegi,illikFaiz,kreditinMuddeti;
-    @NotNull
-    private double cerimeFaizi,anaMebleg;
-    private Date kreditinBaslamaTarixi,kreditinBitmeTarixi,sonOdenisTarixi;
+
+    private int kreditMeblegi;
+
+    private int illikFaiz;
+
+    private int kreditinMuddeti;
+
+    private double cerimeFaizi;
+
+    private double anaMebleg;
+    private Date kreditinBaslamaTarixi;
+    private Date kreditinBitmeTarixi;
+    private Date sonOdenisTarixi;
     private String musteriElaqeNomlar;
     @ManyToOne
     @JoinColumn(name = "client_id")

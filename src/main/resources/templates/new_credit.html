@@ -8,7 +8,7 @@
 <a href="home">Ana Sehife</a><br><br>
 
 
-<form th:action="@{/credit/newcredit}" th:method="post" th:object="${credit}">
+<form th:action="@{/credit/new}" th:method="post" th:object="${credit}">
 
     <label th:for="musteri">Musteri:</label><input  type="text" id="musteri_id" name="musteri_id" ><br><br>
     <label th:for="mebleg">Kredit Meblegi:</label><input th:field="*{kreditMeblegi}" type="text" id="mebleg"><br><br>

@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:form="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Yeni Musteri</title>
 </head>
 <body>
-<a href="home">Ana sehife</a><br><br>
-<form th:action="@{/credit/client}" th:method="post" th:object="${client}">
+<a href="/credit/home">Ana sehife</a><br><br>
+<form th:action="@{/client/}" th:method="post" th:object="${client}">
     <label th:for="ad">Ad:</label><input th:field="*{ad}" type="text" id="ad"><br><br>
     <label th:for="soyad">Soyad:</label><input th:field="*{soyad}" type="text" id="soyad"><br><br>
     <label th:for="ata">Ata adi:</label><input th:field="*{ataAdi}" type="text" id="ata"><br><br>
@@ -22,6 +22,9 @@
     <label th:for="ish">Ishlediyi Yer:</label><input th:field="*{isYeri}" type="text" id="ish"><br><br>
     <label th:for="vezife">Vezife:</label><input th:field="*{vezife}" type="text" id="vezife"><br><br>
     <label th:for="tel">Telefon nomresi:</label><input th:field="*{telefon}" type="text" id="tel"><br><br>
+    <ul>
+    <li th:for="ad" th:if="${#fields.hasErrors('*')}"th:errors="*"></li>
+    </ul>
     <input type="submit" value="Qebul et">
 
 </form>

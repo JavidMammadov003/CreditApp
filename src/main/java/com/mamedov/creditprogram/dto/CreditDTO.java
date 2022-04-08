@@ -42,7 +42,7 @@ public class CreditDTO {
             this.sonOdenis = credit.getSonOdenisTarixi().toLocalDate();
         }catch(NullPointerException e){
             int gunSayi= (int) ChronoUnit.DAYS.between(credit.getKreditinBaslamaTarixi().toLocalDate(),bugunkiTarix);
-            System.out.println(bugunkiTarix);
+
             return (anaMebleg*gunSayi*gunFaizi)/100.0;
         }
         int gunSayi2=(int) ChronoUnit.DAYS.between(sonOdenis,bugunkiTarix);

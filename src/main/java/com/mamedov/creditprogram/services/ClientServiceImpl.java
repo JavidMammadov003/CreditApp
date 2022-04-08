@@ -24,4 +24,9 @@ public class ClientServiceImpl implements ClientServiceInter{
     public List<Client> getAllClients() {
         return clientRepo.findAll();
     }
+
+    @Override
+    public void deleteClientById(int id) {
+        clientRepo.deleteById(id);
+    }
 }

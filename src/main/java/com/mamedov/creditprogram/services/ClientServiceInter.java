@@ -5,8 +5,9 @@ import com.mamedov.creditprogram.entities.Client;
 import java.util.List;
 
 public interface ClientServiceInter {
-    public void saveClient(Client client);
-    public Client getClientById(int id);
-    public List<Client> getAllClients();
+     void saveClient(Client client);
+     Client getClientById(int id);
+     List<Client> getAllClients();
+     void deleteClientById(int id);
 
 }

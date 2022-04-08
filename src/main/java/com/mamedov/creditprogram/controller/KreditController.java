@@ -34,35 +34,35 @@ public class KreditController {
         model.addAttribute("credits",credits);
         return "credit_page";
     }
-    @GetMapping("/newclient")
-    public String addClientView(Model model){
-        model.addAttribute("client",new Client());
-        return "new_client";
-    }
-    @GetMapping("/client")
-    public String getClients(Model model){
-        model.addAttribute("clients",clientService.getAllClients());
-        return "clients";
-    }
-    @GetMapping("/client/{clid}")
-    public String clientDetails(@PathVariable("clid")int id,Model model){
-        Client client=clientService.getClientById(id);
-        model.addAttribute("client",client);
-        return "client_details";
-    }
-    @PostMapping("/client")
-    public String addClientDB(@ModelAttribute("client") Client client,Model model){
-        clientService.saveClient(client);
-        List<Client> clients=clientService.getAllClients();
-        model.addAttribute("clients",clients);
-        return "clients";
-    }
-    @GetMapping("/newcredit")
+//    @GetMapping("/newclient")
+//    public String addClientView(Model model){
+//        model.addAttribute("client",new Client());
+//        return "new_client";
+//    }
+//    @GetMapping("/client")
+//    public String getClients(Model model){
+//        model.addAttribute("clients",clientService.getAllClients());
+//        return "clients";
+//    }
+//    @GetMapping("/client/{clid}")
+//    public String clientDetails(@PathVariable("clid")int id,Model model){
+//        Client client=clientService.getClientById(id);
+//        model.addAttribute("client",client);
+//        return "client_details";
+//    }
+//    @PostMapping("/client")
+//    public String addClientDB(@ModelAttribute("client") Client client,Model model){
+//        clientService.saveClient(client);
+//        List<Client> clients=clientService.getAllClients();
+//        model.addAttribute("clients",clients);
+//        return "clients";
+//    }
+    @GetMapping("/new")
     public String newCreditView(Model model) {
         model.addAttribute("credit", new Credit());
         return "new_credit";
     }
-    @PostMapping("/newcredit")
+    @PostMapping("/new")
     public String addCreditDB(@ModelAttribute("credit") Credit credit, @RequestParam("musteri_id") int id){
         Client client=clientService.getClientById(id);
         Date baslamaTarixi=new java.sql.Date(Calendar.getInstance().getTime().getTime());
