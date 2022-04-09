@@ -38,7 +38,7 @@ public class ClientController {
         return "client_details";
     }
 
-    @RequestMapping(value ="/",method = RequestMethod.POST)
+    @PostMapping("/")
     public String addClientDB(@Valid @ModelAttribute("client")  Client client ,BindingResult bindingResult, Model model) {
         if(bindingResult.hasFieldErrors()){
             System.out.println("hm");
@@ -54,6 +54,18 @@ public class ClientController {
     @DeleteMapping("/{id}")
     public String deleteClient(@PathVariable("id")int id){
         clientService.deleteClientById(id);
+        return "redirect:/client/";
+    }
+    @GetMapping("update/{id}")
+    public String getupdateClient(@PathVariable("id")int id,Model model){
+        model.addAttribute("client",clientService.getClientById(id));
+        return "update_client";
+    }
+
+    @PutMapping("/update/{id}")
+    public String updateClient(@ModelAttribute("client") Client client,@PathVariable("id")int id){
+        client.setId(id);
+        clientService.saveClient(client);
         return "redirect:/client/";
     }
 }

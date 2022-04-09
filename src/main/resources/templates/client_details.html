@@ -43,7 +43,7 @@
         <td th:text="${client.dogumTarixi}"></td>
         <td th:text="${client.dogumYeri}"></td>
         <td>
-            <form th:action="@{/client/{id}(clid=${client.id})}" method="put"><input value="Yenilə" type="button" ></form>
+            <form th:action="@{/client/update/{clid}(clid=${client.id})}" method="get" ><input value="Yenilə" type="submit" ></form>
         </td>
     </tr>
 </table>
